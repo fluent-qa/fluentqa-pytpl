@@ -22,3 +22,7 @@ Follow the instruction to generate a template project.
 - generate files: hooks
   * post_gen_project.py
   * pre_gen_project.py
+
+## References Template Project
+
+- [fastapi-starter]( https://github.com/gaganpreet/fastapi-starter.git)
