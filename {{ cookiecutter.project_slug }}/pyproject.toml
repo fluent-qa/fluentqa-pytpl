@@ -30,23 +30,37 @@ packages = [
 {% endif %}
 
 [tool.poetry.dependencies]
-python = "^{{ cookiecutter.minimal_python_version }}"
+python = "^{{ cookiecutter.minimal_python_version }},<4.0"
 {% if cookiecutter.create_example_template == 'cli' %}
 typer = "^0.7.0"
 tqdm="^4.64.1"
 {% endif %}
+{% if cookiecutter.create_example_template == 'server' %}
+fastapi = "^0.98.0"
+uvicorn = "^0.23.2"
+requests = "^2.31.0"
+alembic = "^1.11.3"
+psycopg2-binary = "^2.9.7"
+asyncpg = "^0.28.0"
+SQLAlchemy = "^2.0.20"
+gunicorn = "^21.2.0"
+{% endif %}
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
+black = "^23.10.1"
 pytest = "^7.1.2"
 allure-pytest = "^2.10.0"
 pre-commit = "^2.21.0"
-isort = {extras = ["colors"], version = "^5.11.4"}
 darglint = "^1.8.1"
 pytest-html = "^3.2.0"
 coverage = "^7.0.5"
 coverage-badge = "^1.1.0"
 black = "^22.12.0"
 pytest-cov = "^4.0.0"
+ipython = "^8.16.1"
+pytest-cov = "^4.1.0"
+httpx = "^0.24.1"
+pytest-asyncio = "^0.21.1"
 
 [tool.black]
 # https://github.com/psf/black
@@ -70,55 +84,17 @@ exclude = '''
 )/
 '''
 
-[tool.isort]
-# https://github.com/timothycrosley/isort/
-py_version = {{ cookiecutter.minimal_python_version.replace('.', '') }}
-line_length = {{ cookiecutter.line_length }}
-known_typing = ["typing", "types", "typing_extensions", "mypy", "mypy_extensions"]
-sections = ["FUTURE", "TYPING", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-include_trailing_comma = true
-profile = "black"
-multi_line_output = 3
-indent = 4
-color_output = true
-force_single_line = true
-combine_as_imports = true
-lines_between_types = 1
-lines_after_imports = 2
-src_paths = ["src", "tests"]
-extend_skip = ["setup.py"]
 
-[tool.mypy]
-# https://mypy.readthedocs.io/en/latest/config_file.html#using-a-pyproject-toml-file
-python_version = {{ cookiecutter.minimal_python_version }}
-pretty = true
-show_traceback = true
-color_output = true
-allow_redefinition = false
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-ignore_missing_imports = true
-implicit_reexport = false
-no_implicit_optional = true
-show_column_numbers = true
-show_error_codes = true
-show_error_context = true
-strict_equality = true
-strict_optional = true
-warn_no_return = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unreachable = true
-warn_unused_configs = true
-warn_unused_ignores = true
 
+[tool.cruft]
+skip = [".env"]
 
 [tool.pytest.ini_options]
 # https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
 # Directories that are not visited by pytest collector:
 norecursedirs =["hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
 doctest_optionflags = ["NUMBER", "NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
+asyncio_mode = 'auto'
 
 # Extra options:
 addopts = [
