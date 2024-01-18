@@ -3,7 +3,7 @@
 How to Use:
 
 ```shell
-cookiecutter https://github.com/fluent-qa/fluent-pypro-template.git
+cookiecutter https://github.com/fluent-qa/fluentqa-pytpl.git
 ```
 
 Follow the instruction to generate a template project.
