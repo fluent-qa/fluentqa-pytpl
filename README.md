@@ -1,8 +1,8 @@
 # README
 
 ```sh
-copier copy --trust <github_url> <path>
-pdm init <github_url>
+copier copy --trust https://github.com/fluent-qa/fluentqa-pytpl.git my-project
+mkdir my-project && cd my-project && pdm init https://github.com/fluent-qa/fluentqa-pytpl.git 
 ```
 
 ## PDM as Pythong Depencincy Manager
