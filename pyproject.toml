@@ -93,23 +93,6 @@ source = [
   "src/qpytpl",
 ]
 
-[tool.mypy]
-check_untyped_defs = true
-disallow_any_unimported = true
-disallow_untyped_defs = true
-enable_error_code = [
-  "ignore-without-code",
-]
-exclude = [
-  "build",
-  "template",
-]
-no_implicit_optional = true
-show_error_codes = true
-warn_return_any = true
-warn_unused_ignores = true
-
-
 [tool.ruff]
 extend-exclude = [
   "template",
