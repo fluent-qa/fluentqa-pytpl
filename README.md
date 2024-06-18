@@ -1,5 +1,10 @@
 # README
 
+```sh
+copier copy --trust <github_url> <path>
+pdm init <github_url>
+```
+
 ## PDM as Pythong Depencincy Manager
 
 - [PDM](https://pdm.fming.dev/)

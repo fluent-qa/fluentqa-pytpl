@@ -26,14 +26,6 @@ project_description:
   default: Project brief description.
   help: "Provide a concise description to be used in the Python package overview and the introductory paragraph in the README and documentation's index page:"
   type: str
-development_status:
-  default: Alpha
-  choices:
-    - Alpha
-    - Beta
-    - Production/Stable
-  help: 'Choose the development status:'
-  type: str
 
 author_name:
   default: Your Name
