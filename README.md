@@ -1,28 +1,18 @@
 # README
 
-How to Use:
+## PDM as Pythong Depencincy Manager
 
-```shell
-cookiecutter https://github.com/fluent-qa/fluentqa-pytpl.git
-```
-
-Follow the instruction to generate a template project.
-
+- [PDM](https://pdm.fming.dev/)
+- [PDM 中文文档](https://pdm.fming.dev/zh_CN/latest/index.html)
 
 ## Templates
 
-1. [*] simple
-2. [*] cli-typer
-3. [*] cli-fire
-4. [*] server
+templates:
+  - https://github.com/serious-scaffold/ss-python.git
+  - https://github.com/TezRomacH/python-package-template.git
+  - https://github.com/leynier/python-template.git
+  - https://github.com/fpgmaas/cookiecutter-poetry.git
+  - https://github.com/zillionare/cookiecutter-pypackage.git
+  - https://github.com/rnag/cookiecutter-pypackage.git
+  - https://github.com/yxtay/python-project-template.git
 
-## How to Create template
-
-- cookiecutter based 
-- generate files: hooks
-  * post_gen_project.py
-  * pre_gen_project.py
-
-## References Template Project
-
-- [fastapi-starter]( https://github.com/gaganpreet/fastapi-starter.git)
