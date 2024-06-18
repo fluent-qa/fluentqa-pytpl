@@ -11,7 +11,7 @@ build
 _build
 .cache
 *.so
-
+.pdm-python
 # Installer logs
 pip-log.txt
 
