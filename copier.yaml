@@ -27,7 +27,6 @@ project_description:
   help: "Provide a concise description to be used in the Python package overview and the introductory paragraph in the README and documentation's index page:"
   type: str
 
-
 author_name:
   default: Your Name
   help: 'Specify the name of the author:'
