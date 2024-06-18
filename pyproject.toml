@@ -1,154 +1,154 @@
-[tool.poetry]
-name = "fluentqatpl"
-version = "0.1.0"
-description = "Cookiecutter templates for QA Project"
-authors = ["Patrick <fakepatrick@163.com>"]
-readme = "README.md"
-repository = "https://github.com/qdriven/fluent-pypro-template"
-homepage = "https://github.com/qdriven/fluent-pypro-template"
-keywords = ["python",
-    "cookiecutter",
-    "template",
-    "packages",
-    "makefile",
-    "best-practices",
-    "poetry",
-    "codestyle",
-    "formatters",
-    "python-packages",
-    "semantic-versions",
-    "QA",
-    "Testing",
-    "Tester",
-    "fluent-qa"
-]
-
-packages = [
-    { include = "fluentqatpl", from = "src" },
-]
-#include = ["CHANGELOG.md"]
-#exclude = ["my_package/excluded.py"]
- classifiers = [
-     "Topic :: Software Development :: Build Tools",
-     "Topic :: Software Development :: Libraries :: Python Modules",
- ]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-
-[tool.poetry.dev-dependencies]
-cookiecutter = "^2.1.1"
-pytest = "^7.1.2"
-pytest-cov = "^4.0.0"
-deepdiff = "^6.2.3"
-pre-commit = "^3.1.1"
-httpretty = "^1.1.4"
-typing-extensions = "^4.2.0"
-zipp = "^3.8.0"
-flatdict = "^4.0.1"
-Pygments = "^2.12.0"
-bandit = "^1.7.4"
-coverage = "^6.5.0"
-coverage-badge = "^1.1.0"
-pytest-html = "^3.1.1"
-safety = "^2.1.1"
-pylint = "^2.14.5"
-black = {version = "^23.1.0", allow-prereleases = true}
-darglint = "^1.8.1"
-isort = {extras = ["colors"], version = "^5.10.1"}
-
-# [tool.poetry.scripts]
-# poetry = "poetry.console.application:main"
-
-# [tool.poetry.build]
-# generate-setup-file = false
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["mina-build>=0.2.5"]
+build-backend = "pdm.backend"
 
-[tool.isort]
-py_version = 310
-profile = "black"
-force_single_line = true
-combine_as_imports = true
-lines_between_types = 1
-lines_after_imports = 2
-src_paths = ["src", "tests"]
-extend_skip = ["setup.py"]
+#[build-system]
+#requires = ["pdm-backend", "pdm-polylith-workspace"]
+#build-backend = "pdm.backend"
 
-[tool.black]
-target-version = ['py310']
-line-length = 100
-color = true
-preview = true
-force-exclude = '''
-.*/setup\.py$
-'''
-exclude = '''
-/(
-    \.git
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-    | env
-    | venv
-)/
-'''
+[project]
+authors = [
+    { name = "fluentqa-team", email = "fluent-qa@fluentqa.com" },
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+]
+description = "A Python boilet template for different types of projects."
+dynamic = [
+  "version",
+]
+keywords = [
+  "copier-template",
+  "full-development-lifecycle",
+  "project-template",
+  "scaffold",
+]
+license = {text = "MIT"}
+name = "qpytpl"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    #   "pydantic-settings",
+    #   "typer[all]",
+    "dynaconf>=3.2.5",
+    "pydantic>=2.7.4",
+]
 
-[tool.mypy]
-python_version = "3.10"
-pretty = true
-show_traceback = true
-color_output = true
-allow_redefinition = false
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-ignore_missing_imports = true
-implicit_reexport = false
-no_implicit_optional = true
-show_column_numbers = true
-show_error_codes = true
-show_error_context = true
-strict_equality = true
-strict_optional = true
-warn_no_return = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unreachable = true
-warn_unused_configs = true
-warn_unused_ignores = true
+[tool.pdm.scripts]
+# ss-python-cli = "ss_python.cli:app"
+lint = "ruff ."
+fmt = "ruff format . --check"
+test = "pytest "
+docs = "mkdocs serve"
+docs-deploy ="mkdocs gh-deploy --force"
+cleanup = "sh scripts/cleanup.sh"
+
+[project.urls]
+issue = "https://github.com/fluent-qa/fluentqa-pytpl/issues"
+repository = "https://github.com/fluent-qa/fluentqa-pytpl"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+docs = [
+    "mkdocs-material>=9.5.27",
+    "mkdocs>=1.6.0",
+]
+maintain = [
+    "git-changelog>=2.3",
+]
+lint = [
+    "ruff>=0.4.9"
+]
+test = [
+    "pytest-cov>=5.0.0",
+]
+
 
 [tool.pytest.ini_options]
-# https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
-# Directories that are not visited by pytest collector:
-norecursedirs =["{{ cookiecutter.project_name }}", "hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
-doctest_optionflags = ["NUMBER", "NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
+addopts = "-l -s --durations=0"
+log_cli = true
+log_cli_level = "info"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+log_format = "%(asctime)s %(levelname)s %(message)s"
+minversion = "6.0"
+cov="qpytpl"
+cov-report="html"
 
-# Extra options:
-addopts = [
-  "--strict-markers",
-  "--tb=short",
-  "--doctest-modules",
-  "--doctest-continue-on-failure",
-]
+[tool.coverage]
+
+[tool.coverage.report]
+fail_under = 100
 
 [tool.coverage.run]
-source = ["tests"]
-[coverage.paths]
-source = "hooks"
-[coverage.run]
-branch = true
-[coverage.report]
-fail_under = 50
-show_missing = true
-exclude_lines = [
-    "pragma: no cover",
-    "if TYPE_CHECKING:"
+source = [
+  "src/qpytpl",
 ]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_unimported = true
+disallow_untyped_defs = true
+enable_error_code = [
+  "ignore-without-code",
+]
+exclude = [
+  "build",
+  "template",
+]
+no_implicit_optional = true
+show_error_codes = true
+warn_return_any = true
+warn_unused_ignores = true
+
+
+[tool.ruff]
+extend-exclude = [
+  "template",
+]
+fix = true
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+  "B", # flake8-bugbear
+  "D", # pydocstyle
+  "E", # pycodestyle error
+  "F", # Pyflakes
+  "I", # isort
+  "RUF100", # Unused noqa directive
+  "S", # flake8-bandit
+  "SIM", # flake8-simplify
+  "UP", # pyupgrade
+  "W", # pycodestyle warning
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+
+[tool.tomlsort]
+all = true
+in_place = true
+trailing_comma_inline_array = true
+
+[[tool.pdm.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+
+[[tool.pdm.source]]
+name = "douban"
+url = "https://pypi.doubanio.com/simple/"
+
+
