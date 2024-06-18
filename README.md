@@ -2,7 +2,8 @@
 
 ```sh
 copier copy --trust https://github.com/fluent-qa/fluentqa-pytpl.git my-project
-mkdir my-project && cd my-project && pdm init https://github.com/fluent-qa/fluentqa-pytpl.git 
+mkdir my-project && cd my-project 
+pdm init https://github.com/fluent-qa/fluentqa-pytpl.git 
 ```
 
 ## PDM as Pythong Depencincy Manager
