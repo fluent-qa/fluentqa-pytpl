@@ -11,7 +11,7 @@ copier copy --trust https://github.com/fluent-qa/fluentqa-pytpl.git my-project
 - create project by pdm
 
 ```sh
-mkdir my-project && cd my-project 
+mkdir my-project && cd my-project
 pdm init https://github.com/fluent-qa/fluentqa-pytpl.git
 ```
 
@@ -20,7 +20,7 @@ pdm init https://github.com/fluent-qa/fluentqa-pytpl.git
 - [PDM](https://pdm.fming.dev/)
 - [PDM 中文文档](https://pdm.fming.dev/zh_CN/latest/index.html)
 
-## Templates
+## Templates References
 
 templates:
   - https://github.com/serious-scaffold/ss-python.git
@@ -30,4 +30,3 @@ templates:
   - https://github.com/zillionare/cookiecutter-pypackage.git
   - https://github.com/rnag/cookiecutter-pypackage.git
   - https://github.com/yxtay/python-project-template.git
-
