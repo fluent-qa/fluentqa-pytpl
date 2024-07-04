@@ -42,7 +42,6 @@ dependencies = [
 ]
 
 [tool.pdm.scripts]
-# ss-python-cli = "ss_python.cli:app"
 lint = "ruff ."
 fmt = "ruff format . --check"
 test = "pytest "
@@ -51,8 +50,8 @@ docs-deploy ="mkdocs gh-deploy --force"
 cleanup = "sh scripts/cleanup.sh"
 
 [project.urls]
-issue = "https://github.com/{{organization_name}}/{{repo_name}}/issues"
-repository = "https://github.com/{{organization_name}}/{{repo_name}}"
+issue = "https://github.com/{{organization_name}}/{{project_name}}/issues"
+repository = "https://github.com/{{organization_name}}/{{project_name}}"
 
 [tool.pdm]
 distribution = true
@@ -148,5 +147,3 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
 [[tool.pdm.source]]
 name = "douban"
 url = "https://pypi.doubanio.com/simple/"
-
-
