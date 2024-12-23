@@ -1,149 +1,106 @@
-[build-system]
-requires = ["mina-build>=0.2.5"]
-build-backend = "pdm.backend"
-
-#[build-system]
-#requires = ["pdm-backend", "pdm-polylith-workspace"]
-#build-backend = "pdm.backend"
-
 [project]
-authors = [
-    { name = "{{author_name}}", email = "{{author_email}}" },
-]
-classifiers = [
-  "Development Status :: 3 - Alpha",
-  "License :: OSI Approved :: MIT License",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-]
-description = "{{project_description}}"
-dynamic = [
-  "version",
-]
-keywords = [
-  "copier-template",
-  "full-development-lifecycle",
-  "project-template",
-  "scaffold",
-]
-license = {text = "UNDEFINED"}
 name = "{{project_name}}"
+version = "0.1.0"
+description = "{{project_description}}"
 readme = "README.md"
-requires-python = ">=3.9"
-dependencies = [
-    #   "pydantic-settings",
-    #   "typer[all]",
-    "dynaconf>=3.2.5",
-    "pydantic>=2.7.4",
+
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+{{project_name}} = "{{project_name}}:main"
+cleanup = "qpyci.commands:clean"
+cov = "ci:coverage"
+badge = "qpyci.commands:generate_badge"
+check_format = "ci:check_format"
+ci = "ci:ci"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+
+[tool.hatch.build.targets.wheel.force-include]
+"ci.py" = "ci.py"
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.uv.sources]
+qpyci = { git = "https://github.com/fluent-qa/qpyci.git", rev = "main" }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qpyapp"]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportUnnecessaryTypeIgnoreComment = true
+reportMissingTypeStubs = false
+include = ["src", "tests"]
+venvPath = ".venv"
+# see https://github.com/microsoft/pyright/issues/7771 - we don't want to error on decorated functions in tests
+# which are not otherwise used
+executionEnvironments = [{ root = "tests", reportUnusedFunction = false }]
+
+
+[dependency-groups]
+lint = ["ruff>=0.8.3"]
+dev = [
+    "allure-pytest>=2.13.5",
+    "pytest-cov>=6.0.0",
+    "pytest>=8.3.4",
+    "coverage-badge>=1.1.2",
 ]
 
-[tool.pdm.scripts]
-lint = "ruff ."
-fmt = "ruff format . --check"
-test = "pytest "
-docs = "mkdocs serve"
-docs-deploy ="mkdocs gh-deploy --force"
-cleanup = "sh scripts/cleanup.sh"
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+include = ["qpyapp/**/*.py", "tests/**/*.py", "docs/**/*.py"]
 
-[project.urls]
-issue = "https://github.com/{{organization_name}}/{{project_name}}/issues"
-repository = "https://github.com/{{organization_name}}/{{project_name}}"
-
-[tool.pdm]
-distribution = true
-
-[tool.pdm.dev-dependencies]
-docs = [
-    "mkdocs-material>=9.5.27",
-    "mkdocs>=1.6.0",
+[tool.ruff.lint]
+extend-select = ["Q", "RUF100", "C90", "UP", "I", "D"]
+flake8-quotes = { inline-quotes = "single", multiline-quotes = "double" }
+isort = { combine-as-imports = true, known-first-party = ["qpyconf"] }
+mccabe = { max-complexity = 15 }
+ignore = [
+    "D100", # ignore missing docstring in module
+    "D102", # ignore missing docstring in public method
+    "D104", # ignore missing docstring in public package
+    "D105", # ignore missing docstring in magic methods
+    "D107", # ignore missing docstring in __init__ methods
 ]
 
-lint = [
-    "ruff>=0.4.9"
-]
-test = [
-    "pytest-cov>=5.0.0",
-]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+# don't format python in docstrings, pytest-examples takes care of it
+docstring-code-format = false
+quote-style = "single"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["D"]
+"docs/**/*.py" = ["D"]
+"src/qpyconf/**/*.py" = ["D101", "D103"]
 
 
 [tool.pytest.ini_options]
-addopts = "-l -s --durations=0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = [
+    "--alluredir",
+    "allure-results",
+    "--clean-alluredir",
+    "-l",
+    "-s",
+    "--durations",
+    "0",
+    "--cov",
+    "qpyconf",
+]
 log_cli = true
 log_cli_level = "info"
 log_date_format = "%Y-%m-%d %H:%M:%S"
 log_format = "%(asctime)s %(levelname)s %(message)s"
 minversion = "6.0"
-cov="qpytpl"
-cov-report="html"
-
-[tool.coverage]
-
-[tool.coverage.report]
-fail_under = 100
-
-[tool.coverage.run]
-source = [
-  "src/qpytpl",
-]
-
-[tool.mypy]
-check_untyped_defs = true
-disallow_any_unimported = true
-disallow_untyped_defs = true
-enable_error_code = [
-  "ignore-without-code",
-]
-exclude = [
-  "build",
-  "template",
-]
-no_implicit_optional = true
-show_error_codes = true
-warn_return_any = true
-warn_unused_ignores = true
-
-
-[tool.ruff]
-extend-exclude = [
-  "template",
-]
-fix = true
-src = ["src"]
-
-[tool.ruff.lint]
-select = [
-  "B", # flake8-bugbear
-  "D", # pydocstyle
-  "E", # pycodestyle error
-  "F", # Pyflakes
-  "I", # isort
-  "RUF100", # Unused noqa directive
-  "S", # flake8-bandit
-  "SIM", # flake8-simplify
-  "UP", # pyupgrade
-  "W", # pycodestyle warning
-]
-
-[tool.ruff.lint.per-file-ignores]
-"tests/*" = ["S101"]
-
-[tool.ruff.lint.pydocstyle]
-convention = "google"
-
-
-[tool.tomlsort]
-all = true
-in_place = true
-trailing_comma_inline_array = true
-
-[[tool.pdm.source]]
-name = "mirrors"
-url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
-
-[[tool.pdm.source]]
-name = "douban"
-url = "https://pypi.doubanio.com/simple/"
