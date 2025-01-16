@@ -28,7 +28,7 @@ license = { text = "MIT" }
 name = "qpytpl"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+
 
 [project.scripts]
 qpyapp = "qpyapp:main"
@@ -55,16 +55,6 @@ qpyci = { git = "https://github.com/fluent-qa/qpyci.git", rev = "main" }
 [tool.hatch.build.targets.wheel]
 packages = ["src/qpyapp"]
 
-[tool.pyright]
-typeCheckingMode = "strict"
-reportUnnecessaryTypeIgnoreComment = true
-reportMissingTypeStubs = false
-include = ["src", "tests"]
-venvPath = ".venv"
-# see https://github.com/microsoft/pyright/issues/7771 - we don't want to error on decorated functions in tests
-# which are not otherwise used
-executionEnvironments = [{ root = "tests", reportUnusedFunction = false }]
-
 
 [dependency-groups]
 lint = ["ruff>=0.8.3"]
@@ -78,7 +68,7 @@ dev = [
 [tool.ruff]
 line-length = 120
 target-version = "py39"
-include = ["qpyapp/**/*.py", "tests/**/*.py", "docs/**/*.py"]
+include = ["**/**/*.py", "tests/**/*.py", "docs/**/*.py"]
 
 [tool.ruff.lint]
 extend-select = ["Q", "RUF100", "C90", "UP", "I", "D"]
@@ -104,7 +94,7 @@ quote-style = "single"
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["D"]
 "docs/**/*.py" = ["D"]
-"src/qpyconf/**/*.py" = ["D101", "D103"]
+"src/**/**/*.py" = ["D101", "D103"]
 
 
 [tool.pytest.ini_options]
@@ -117,9 +107,7 @@ addopts = [
     "-l",
     "-s",
     "--durations",
-    "0",
-    "--cov",
-    "qpyconf",
+    "0"
 ]
 log_cli = true
 log_cli_level = "info"
