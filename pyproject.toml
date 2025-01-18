@@ -1,10 +1,3 @@
-# [build-system]
-# requires = ["mina-build>=0.2.5"]
-# build-backend = "pdm.backend"
-
-#[build-system]
-#requires = ["pdm-backend", "pdm-polylith-workspace"]
-#build-backend = "pdm.backend"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -20,7 +13,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 description = "A Python boilet template for different types of projects."
-dynamic = ["version"]
+version = "0.1.0"
 keywords = [
     "copier-template",
     "full-development-lifecycle",
@@ -28,7 +21,7 @@ keywords = [
     "scaffold",
 ]
 license = { text = "MIT" }
-name = "qpytpl"
+name = "{{prject_name}}"
 readme = "README.md"
 requires-python = ">=3.9"
 
@@ -42,8 +35,8 @@ check_format = "ci:check_format"
 ci = "ci:ci"
 
 [project.urls]
-issue = "https://github.com/fluent-qa/fluentqa-pytpl/issues"
-repository = "https://github.com/fluent-qa/fluentqa-pytpl"
+issue = "https://github.com/"
+repository = "https://github.com/"
 
 
 [tool.hatch.build.targets.wheel.force-include]
@@ -59,7 +52,7 @@ qpyci = { git = "https://github.com/fluent-qa/qpyci.git", rev = "main" }
 members = ["https:/github.com/fluent-qa/fluentqa-pytpl.git"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/qpyapp"]
+packages = ["src/{{project_name}}"]
 
 
 [dependency-groups]
