@@ -49,7 +49,7 @@ default-groups = ["dev"]
 qpyci = { git = "https://github.com/fluent-qa/qpyci.git", rev = "main" }
 
 [tool.uv.workspace]
-members = ["https:/github.com/fluent-qa/fluentqa-pytpl.git"]
+members = [""]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/{{project_name}}"]
