@@ -8,9 +8,10 @@ Two ways to create a new python project:
 copier copy --trust https://github.com/fluent-qa/fluentqa-pytpl.git my-project
 ```
 
-- create project by pdm
+- create project by UV, because UV is so fast
 
 ```sh
 mkdir my-project && cd my-project
-pdm init https://github.com/fluent-qa/fluentqa-pytpl.git
+uv pip install --source git+https://github.com/fluent-qa/fluentqa-pytpl.git
+
 ```

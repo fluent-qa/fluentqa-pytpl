@@ -55,6 +55,9 @@ default-groups = ["dev"]
 [tool.uv.sources]
 qpyci = { git = "https://github.com/fluent-qa/qpyci.git", rev = "main" }
 
+[tool.uv.workspace]
+members = ["https:/github.com/fluent-qa/fluentqa-pytpl.git"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/qpyapp"]
 
