@@ -6,8 +6,6 @@ build-backend = "hatchling.build"
 authors = [{ name = "fluentqa-team", email = "fluent-qa@fluentqa.com" }]
 classifiers = [
     "Development Status :: 3 - Alpha",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -29,7 +27,7 @@ keywords = [
 license = { text = "MIT" }
 name = "{{prject_name}}"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">3.9"
 
 
 [project.scripts]
@@ -68,6 +66,7 @@ dev = [
     "pytest-cov>=6.0.0",
     "pytest>=8.3.4",
     "coverage-badge>=1.1.2",
+    "qpyci"
 ]
 
 [tool.ruff]
