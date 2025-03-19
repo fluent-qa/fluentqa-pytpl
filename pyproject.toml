@@ -19,6 +19,12 @@ keywords = [
     "full-development-lifecycle",
     "project-template",
     "scaffold",
+    "python",
+    "template",
+    "project-generator",
+    "uv",
+    "cookiecutter",
+    "cli"
 ]
 license = { text = "MIT" }
 name = "{{prject_name}}"
